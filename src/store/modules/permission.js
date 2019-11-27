@@ -39,6 +39,7 @@ export function filterAsyncRoutes(routes, roles) {
   return res
 }
 
+
 const state = {
   routes: [],
   addRoutes: []
@@ -51,7 +52,7 @@ const mutations = {
   }
 }
 const actions = {
-  generateRoutes({ commit }, roles) {
+  async generateRoutes({ commit }, roles, roleList) {
     return new Promise(resolve => {
       let accessedRoutes
       if (roles.includes('admin')) {

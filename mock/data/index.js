@@ -586,11 +586,12 @@ export const Morkroutes = [
     }
 ]
 
-export const list = [{
+export const list = [
+    {
     "id": 43,
     "menu_name": "测试任务",
     "menu_href": "test1",
-    "menu_icon": "el-icon-lx-edit",
+    "menu_icon": "el-icon-edit",
     "tree_sort": 600,
     "tree_level": 1,
     "is_show": 1,
@@ -713,8 +714,8 @@ export const list = [{
 {
     "id": 53,
     "menu_name": "单独测试",
-    "menu_href": "/try",
-    "menu_icon": "el-icon-lx-edit",
+    "menu_href": "try",
+    "menu_icon": "el-icon-edit",
     "tree_sort": 600,
     "tree_level": 1,
     "is_show": 1,
@@ -723,5 +724,30 @@ export const list = [{
     "parent": null,
     "alwaysShow": false
 },
-
+{
+    "id": 54,
+    "menu_name": "用户管理",
+    "menu_href": "user",
+    "menu_icon": "el-icon-edit",
+    "tree_sort": 600,
+    "tree_level": 1,
+    "is_show": 1,
+    "status": 0,
+    "remarks": "",
+    "parent": null,
+    "alwaysShow": false
+},
+{
+    "id": 55,
+    "menu_name": "菜单管理",
+    "menu_href": "/user/menu",
+    "menu_icon": "el-icon-edit",
+    "tree_sort": 600,
+    "tree_level": 1,
+    "is_show": 1,
+    "status": 0,
+    "remarks": "",
+    "parent": 54,
+    "alwaysShow": false
+},
 ]

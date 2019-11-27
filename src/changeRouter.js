@@ -4,7 +4,7 @@
 * @param {*} parent 父级id
 */
 
-export const customAddRoutes = (list, parent) => {
+export const routesData = (list, parent=null) => {
     let tree = [];
     let temp;
     for (let i = 0; i < list.length; i++) {
@@ -30,6 +30,7 @@ export const customAddRoutes = (list, parent) => {
                         component: resolve => require([`@/layout/index`], resolve),
                         name: list[i].menu_href,
                         alwaysShow: false,
+                        id: list[i].id,
                         meta: {
                             icon: list[i].menu_icon,
                             index: list[i].id,
@@ -44,6 +45,7 @@ export const customAddRoutes = (list, parent) => {
                     component: resolve => require([`@/views${list[i].menu_href}`], resolve),
                     name: list[i].menu_href,
                     alwaysShow: false,
+                    parentId: list[i].parent,
                     meta: {
                         icon: list[i].menu_icon,
                         index: list[i].id,
@@ -53,7 +55,7 @@ export const customAddRoutes = (list, parent) => {
                 }
             }
 
-            temp = customAddRoutes(list, list[i].id);
+            temp = routesData(list, list[i].id);
             if (temp.length > 0) {
                 route.children = temp;
             }
@@ -61,6 +63,14 @@ export const customAddRoutes = (list, parent) => {
         }
     }
     //最后添加 通配404页面
-    tree.push({ path: '*', redirect: '/404', hidden: true })
+    // tree.push({ path: '*', redirect: '/404', hidden: true })
     return tree;
+}
+
+
+export const customAddRoutes = (list, parent) => {
+    let tree = routesData(list, parent)
+    console.log(tree)
+    tree.push({ path: '*', redirect: '/404', hidden: true })
+    return tree
 }

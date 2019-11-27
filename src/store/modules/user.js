@@ -1,4 +1,4 @@
-import { login, logout, getInfo } from '@/api/user'
+import { login, logout, getInfo, getRoleList, getRoleData } from '@/api/user'
 import { getToken, setToken, removeToken } from '@/utils/auth'
 import { resetRouter } from '@/router'
 
@@ -6,7 +6,9 @@ const state = {
   token: getToken(),
   name: '',
   avatar: '',
-  roles: []
+  roles: [],
+  roleList: [],
+  roleData: []
 }
 
 const mutations = {
@@ -21,6 +23,12 @@ const mutations = {
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
+  },
+  SET_ROLELIST: (state, roleList) => {
+    state.roleList = roleList
+  },
+  SET_ROLEDATA: (state, roleData) => {
+    state.roleData = roleData
   }
 }
 
@@ -89,7 +97,22 @@ const actions = {
       removeToken()
       resolve()
     })
+  },
+
+  getRoleList({ commit }) {
+    return new Promise((resolve, reject) => {
+      getRoleList().then(res => {
+        let data = res.data
+        commit('SET_ROLELIST', data)
+        resolve(data)
+      }).catch(error => {
+        reject(error)
+      })
+    })
+
   }
+
+
 }
 
 export default {
